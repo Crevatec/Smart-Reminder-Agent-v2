@@ -1,0 +1,10 @@
+title,description,date,time,category,channel,recurring,customDays,tags,email,priority
+"Team Standup","Daily engineering sync","2026-05-11","09:00","Work","slack","weekdays","","standup,work","","normal"
+"Project Deadline Review","Review Q2 milestones","2026-05-11","11:00","Work","email","weekly","","work,deadline","team@example.com","high"
+"Client Follow-up Call","Follow up on proposal sent Monday","2026-05-12","14:00","Work","email","none","","work,client","client@example.com","high"
+"Gym Workout","Cardio + strength training","2026-05-11","19:00","Health","email","custom","Mon,Wed,Fri","health,fitness","","normal"
+"Read 20 Pages","Deep Work by Cal Newport","2026-05-11","21:30","Personal","email","daily","","personal,reading","","low"
+"Pay Electricity Bill","Monthly utility payment","2026-05-13","10:00","Finance","email","monthly","","finance,bills","","high"
+"Sprint Planning","Plan next 2-week sprint with team","2026-05-14","09:30","Work","both","biweekly","","work,planning","dev-team@example.com","high"
+"Dentist Appointment","6-month checkup","2026-05-20","10:00","Health","email","none","","health","","normal"
+"Weekly Review","Review goals and progress","2026-05-17","18:00","Personal","slack","weekly","","personal,review","","normal"

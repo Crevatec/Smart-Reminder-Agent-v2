@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Reminder Agent v2</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">SmartReminder</div>
+        <div class="brand-sub">Agent v2</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="#" class="nav-item active" data-view="dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item" data-view="reminders">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Reminders
+      </a>
+      <a href="#" class="nav-item" data-view="calendar">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Calendar
+      </a>
+      <a href="#" class="nav-item" data-view="recurring">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Recurring
+      </a>
+      <a href="#" class="nav-item" data-view="channels">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.17 6.17l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Channels
+      </a>
+      <a href="#" class="nav-item" data-view="templates">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Templates
+      </a>
+      <a href="#" class="nav-item" data-view="logs">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+        Logs
+      </a>
+
+      <div class="nav-section-label" style="margin-top:1.5rem">Exports</div>
+      <a href="#" class="nav-item" onclick="app.exportGoogleCalendar()">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><text x="12" y="19" text-anchor="middle" font-size="7" stroke="none" fill="currentColor">G</text></svg>
+        Google Calendar
+      </a>
+      <a href="#" class="nav-item" onclick="app.exportICal()">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        iCal Export
+      </a>
+      <a href="#" class="nav-item" onclick="app.exportCSV()">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        CSV Export
+      </a>
+
+      <div class="nav-section-label" style="margin-top:1.5rem">Tools</div>
+      <a href="#" class="nav-item" data-view="settings">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="dry-run-toggle">
+        <div class="dry-run-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Dry Run Mode
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="dryRunToggle" onchange="app.toggleDryRun(this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="sync-status" id="syncStatus">
+        <span class="status-dot"></span>
+        All systems operational
+      </div>
+      <button class="sync-btn" onclick="app.syncNow()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Sync Now
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-wrapper">
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" onclick="app.toggleSidebar()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search reminders, tasks, or tags..." id="globalSearch" oninput="app.search(this.value)" />
+          <kbd>⌘K</kbd>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div id="dryRunBadge" class="dry-run-badge hidden">👁 DRY RUN</div>
+        <button class="btn btn-primary" onclick="app.openModal('add')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Reminder
+        </button>
+        <button class="btn btn-secondary" onclick="app.exportCSV()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+        <div class="topbar-user">
+          <div class="user-avatar">AP</div>
+          <div class="user-info">
+            <span class="user-name" id="userName">Alex Parker</span>
+            <span class="user-plan">Premium</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main class="content" id="mainContent">
+      <!-- Views injected by JS -->
+    </main>
+  </div>
+
+  <!-- ADD/EDIT REMINDER MODAL -->
+  <div class="modal-overlay hidden" id="reminderModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">New Reminder</h2>
+        <button class="modal-close" onclick="app.closeModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editId" value="" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Title *</label>
+            <input type="text" id="rTitle" placeholder="e.g. Team Standup Meeting" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="rCategory">
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Health">Health</option>
+              <option value="Finance">Finance</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="rDescription" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="rDate" />
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <input type="time" id="rTime" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Channel</label>
+            <select id="rChannel">
+              <option value="email">Email (SMTP)</option>
+              <option value="slack">Slack Webhook</option>
+              <option value="both">Both</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <select id="rPriority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tags (comma separated)</label>
+          <input type="text" id="rTags" placeholder="e.g. work, urgent, weekly" />
+        </div>
+        <div class="form-group recurring-section">
+          <label>Recurring</label>
+          <div class="recurring-controls">
+            <select id="rRecurring">
+              <option value="none">None</option>
+              <option value="daily">Daily</option>
+              <option value="weekdays">Weekdays</option>
+              <option value="weekly">Weekly</option>
+              <option value="biweekly">Bi-weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="custom">Custom days</option>
+            </select>
+            <div id="customDaysContainer" class="hidden custom-days">
+              <label class="checkbox-item"><input type="checkbox" value="Mon" class="custom-day"> Mon</label>
+              <label class="checkbox-item"><input type="checkbox" value="Tue" class="custom-day"> Tue</label>
+              <label class="checkbox-item"><input type="checkbox" value="Wed" class="custom-day"> Wed</label>
+              <label class="checkbox-item"><input type="checkbox" value="Thu" class="custom-day"> Thu</label>
+              <label class="checkbox-item"><input type="checkbox" value="Fri" class="custom-day"> Fri</label>
+              <label class="checkbox-item"><input type="checkbox" value="Sat" class="custom-day"> Sat</label>
+              <label class="checkbox-item"><input type="checkbox" value="Sun" class="custom-day"> Sun</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Recipient Email</label>
+          <input type="email" id="rEmail" placeholder="recipient@example.com" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="app.closeModal()">Cancel</button>
+        <button class="btn btn-secondary" onclick="app.previewReminder()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview (Dry Run)
+        </button>
+        <button class="btn btn-primary" onclick="app.saveReminder()">Save Reminder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRY RUN PREVIEW MODAL -->
+  <div class="modal-overlay hidden" id="dryRunModal">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <h2>🔍 Dry Run Preview</h2>
+        <button class="modal-close" onclick="app.closeDryRunModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="dryRunContent"></div>
+      <div class="modal-footer">
+        <div class="dry-run-note">⚠️ No emails or files will be created in dry run mode.</div>
+        <button class="btn btn-ghost" onclick="app.closeDryRunModal()">Close</button>
+        <button class="btn btn-primary" onclick="app.sendNow()">Send Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- IMPORT CSV MODAL -->
+  <div class="modal-overlay hidden" id="importModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Import from CSV</h2>
+        <button class="modal-close" onclick="app.closeImportModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="csv-drop-zone" id="csvDropZone" onclick="document.getElementById('csvFileInput').click()">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p>Click or drop a CSV file here</p>
+          <span>Supported: title, date, time, channel, recurring, tags, email, category, priority</span>
+          <input type="file" id="csvFileInput" accept=".csv" style="display:none" onchange="app.handleCSVUpload(event)" />
+        </div>
+        <div id="csvPreview" class="hidden"></div>
+        <div class="form-group" style="margin-top:1rem">
+          <a href="#" onclick="app.downloadCSVTemplate()" class="link-btn">Download CSV Template</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="app.closeImportModal()">Cancel</button>
+        <button class="btn btn-primary" id="importConfirmBtn" disabled onclick="app.confirmImport()">Import Reminders</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/channels.js"></script>
+  <script src="js/exports.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
